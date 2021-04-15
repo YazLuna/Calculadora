@@ -1,0 +1,8 @@
+FROM debian:1.4.0.0
+RUN apt-get update && apt-get install -y python3
+WORKDIR /home
+COPY Cliente.py /home
+COPY simple.thrifth /home
+RUN thrift --gen py simple.thrift
+ENTRYPOINT ["python3"]
+CMD ["Cliente.py"]
